@@ -1,28 +1,37 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Spell List</h1>
+    <div class="spells">
+      <div v-bind:key="index" v-for="(spell, index) in spells" class="spell">
+        <h4 class="spell__name">{{ spell.name }}</h4>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data: function () {
+      return {
+        spells: null,
+        loading: true,
+        errored: false,
+        error: null
+      }
+    },
+    mounted () {
+      axios
+        .get('http://www.dnd5eapi.co/api/spells/')
+        .then(response => (this.spells = response.data.results))
+    }
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.spell {
+  font-family: Arial, Helvetica, sans-serif;
 }
 </style>
