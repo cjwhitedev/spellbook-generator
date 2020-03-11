@@ -30,8 +30,6 @@ export default {
   }
 </script>
 
-<style>
-.spell {
-  font-family: Arial, Helvetica, sans-serif;
-}
+<style lang="sass">
+@import 'styles/main.scss';
 </style>

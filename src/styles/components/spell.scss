@@ -1,0 +1,12 @@
+.spells {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+
+.spell {
+    padding: 1rem;
+    margin: 1rem;
+    border: 1px solid lightgray;
+    flex-basis: calc(33% - 5rem);
+}
