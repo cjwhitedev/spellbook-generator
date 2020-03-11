@@ -4,7 +4,14 @@
     <div class="spells">
       <div v-bind:key="index" v-for="(spell, index) in spells" class="spell">
         <h3 class="spell__name">{{ spell.name }}</h3>
-        <div class="spell__school"><em>{{ spell.level }}, {{ spell.school.name }} <span v-if="spell.ritual">(ritual)</span></em></div>
+        <div class="spell__school"><em>
+          <span v-if="spell.level == 0">Cantrip</span>
+          <span v-else-if="spell.level == 1">1st</span>
+          <span v-else-if="spell.level == 2">2nd</span>
+          <span v-else-if="spell.level == 3">3rd</span>
+          <span v-else>{{spell.level}}th</span>,
+          {{ spell.school.name }} <span v-if="spell.ritual">(ritual)</span>
+        </em></div>
         <ul class="spell__meta">
           <li v-if="spell.casting_time"><strong>Casting Time:</strong> {{ spell.casting_time }}</li>
           <li v-if="spell.range"><strong>Range:</strong> {{ spell.range }}</li>
