@@ -13,6 +13,13 @@
     // max-width: 830px;
 
     &__name {
-        color: #734c2e;
+        color: #4d2b20;
+    }
+
+    &__meta {
+        padding: 0;
+        li {
+            display: block;
+        }
     }
 }

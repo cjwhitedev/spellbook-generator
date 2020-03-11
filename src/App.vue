@@ -25,11 +25,8 @@
         <div class="spell__desc">
           <p>{{ spell.desc[0] }}</p>
         </div>
-        <div v-if="spell.higher_level">
-          <h5>At Higher Levels</h5>
-          <div class="spell__desc">
-            <p>{{ spell.higher_level[0] }}</p>
-          </div>
+        <div v-if="spell.higher_level" class="spell__desc">
+          <p> <strong><em>At Higher Levels.</em></strong> {{ spell.higher_level[0] }}</p>
         </div>
 
         <p>classes: 
