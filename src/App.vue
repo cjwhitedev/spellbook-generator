@@ -3,7 +3,7 @@
     <h1>Spell List</h1>
     <div class="spells">
       <div v-bind:key="index" v-for="(spell, index) in spells" class="spell">
-        <h4 class="spell__name">{{ spell.name }}</h4>
+        <h3 class="spell__name">{{ spell.name }}</h3>
         <div class="spell__school"><em>{{ spell.level }}, {{ spell.school.name }} <span v-if="spell.ritual">(ritual)</span></em></div>
         <ul class="spell__meta">
           <li v-if="spell.casting_time"><strong>Casting Time:</strong> {{ spell.casting_time }}</li>
