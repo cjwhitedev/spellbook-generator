@@ -1,1 +1,7 @@
-@import '/components/spell.scss'
+
+@import "~bootstrap/scss/bootstrap";
+@import 'components/spell.scss';
+
+body {
+    background-color: #efe7ce;
+}

@@ -1,12 +1,18 @@
 .spells {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 100%;
+    // display: flex;
+    // flex-wrap: wrap;
+    // max-width: 100%;
 }
 
 .spell {
-    padding: 1rem;
-    margin: 0 0 1rem 1rem;
-    border: 1px solid lightgray;
-    flex-basis: calc(33% - 3rem);
+    padding: 0 2rem;
+    // margin: 0 0 1rem 1rem;
+    margin: 2rem 0 0;
+    // border: 1px solid lightgray;
+    // flex-basis: calc(33% - 3rem);
+    // max-width: 830px;
+
+    &__name {
+        color: #734c2e;
+    }
 }

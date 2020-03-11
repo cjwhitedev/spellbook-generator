@@ -1,8 +1,6 @@
 <template>
-  <div id="app">
-    <h1>Spell List</h1>
-    <div class="spells">
-      <div v-bind:key="index" v-for="(spell, index) in spells" class="spell">
+  <div id="app" class="row">
+      <div v-bind:key="index" v-for="(spell, index) in spells" class="spell col-12 col-md-6">
         <h3 class="spell__name">{{ spell.name }}</h3>
         <div class="spell__school"><em>
           <span v-if="spell.level == 0">Cantrip</span>
@@ -42,7 +40,6 @@
         <p><em>{{ spell.page }}</em></p>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -75,7 +72,7 @@ export default {
   // I'd love to see the app automatically add every spell to the spells known page, for classes that know all but need to prepare daily.
 </script>
 
-<style lang="sass">
+<style lang="scss">
 @import 'styles/main.scss';
 </style>
 
