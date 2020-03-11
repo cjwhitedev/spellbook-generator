@@ -4,6 +4,9 @@
     <div class="spells">
       <div v-bind:key="index" v-for="(spell, index) in spells" class="spell">
         <h4 class="spell__name">{{ spell.name }}</h4>
+        <div class="spell__desc">
+          {{ spell.desc[0] }}
+        </div>
       </div>
     </div>
   </div>
@@ -14,22 +17,33 @@ import axios from 'axios'
 
 export default {
   name: 'App',
-  data: function () {
+  data: function() {
       return {
-        spells: null,
+        spells: [],
         loading: true,
         errored: false,
         error: null
       }
     },
-    mounted () {
+    mounted() {
+      var $this = this
       axios
         .get('http://www.dnd5eapi.co/api/spells/')
-        .then(response => (this.spells = response.data.results))
+        .then(function (response) {
+          response.data.results.forEach( function(spell) {
+            axios
+              .get( 'http://www.dnd5eapi.co/api/spells/' + spell.index )
+              .then(responseDet => ($this.spells.push(responseDet.data)))
+          })
+        })
+        console.log( this.spells)
     }
   }
+
+  // I'd love to see the app automatically add every spell to the spells known page, for classes that know all but need to prepare daily.
 </script>
 
 <style lang="sass">
 @import 'styles/main.scss';
 </style>
+
