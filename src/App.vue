@@ -4,9 +4,35 @@
     <div class="spells">
       <div v-bind:key="index" v-for="(spell, index) in spells" class="spell">
         <h4 class="spell__name">{{ spell.name }}</h4>
+        <div class="spell__school"><em>{{ spell.level }}, {{ spell.school.name }} <span v-if="spell.ritual">(ritual)</span></em></div>
+        <ul class="spell__meta">
+          <li v-if="spell.casting_time"><strong>Casting Time:</strong> {{ spell.casting_time }}</li>
+          <li v-if="spell.range"><strong>Range:</strong> {{ spell.range }}</li>
+          <li v-if="spell.components">
+            <strong>Components:</strong>
+            <span v-bind:key="index" v-for="(spellComponent, index) in spell.components">
+              {{ spellComponent }}
+            </span>
+            <span v-if="spell.material">( {{ spell.material }} )</span>
+          </li>
+          <li v-if="spell.duration"><strong>Duration:</strong> <span v-if="spell.concentration">Concentration,</span> {{ spell.duration }}</li>
+        </ul>
         <div class="spell__desc">
-          {{ spell.desc[0] }}
+          <p>{{ spell.desc[0] }}</p>
         </div>
+        <div v-if="spell.higher_level">
+          <h5>At Higher Levels</h5>
+          <div class="spell__desc">
+            <p>{{ spell.higher_level[0] }}</p>
+          </div>
+        </div>
+
+        <p>classes: 
+          <span v-bind:key="index" v-for="(spellClass, index) in spell.classes">
+              {{ spellClass.name }}
+          </span>
+        </p>
+        <p><em>{{ spell.page }}</em></p>
       </div>
     </div>
   </div>
@@ -36,7 +62,6 @@ export default {
               .then(responseDet => ($this.spells.push(responseDet.data)))
           })
         })
-        console.log( this.spells)
     }
   }
 
