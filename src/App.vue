@@ -23,7 +23,7 @@
           <li v-if="spell.duration"><strong>Duration:</strong> <span v-if="spell.concentration">Concentration,</span> {{ spell.duration }}</li>
         </ul>
         <div class="spell__desc">
-          <p>{{ spell.desc[0] }}</p>
+          <p v-bind:key="index" v-for="(desc, index) in spell.desc">{{ desc }}</p>
         </div>
         <div v-if="spell.higher_level" class="spell__desc">
           <p> <strong><em>At Higher Levels.</em></strong> {{ spell.higher_level[0] }}</p>
@@ -34,6 +34,13 @@
               {{ spellClass.name }}
           </span>
         </p>
+
+        <p v-if="spell.subclasses.length">subclasses: 
+          <span v-bind:key="index" v-for="(sublass, index) in spell.subclasses">
+              {{ sublass.name }}
+          </span>
+        </p>
+
         <p><em>{{ spell.page }}</em></p>
       </div>
     </div>
