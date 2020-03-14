@@ -10,8 +10,8 @@
   "dependencies": {
     "@vue/cli": "^4.2.3",
     "axios": "^0.19.2",
-    "bootstrap": "^4.4.1",
     "core-js": "^3.6.4",
+    "fibers": "^4.0.2",
     "node-sass": "^4.13.1",
     "vue": "^2.6.11"
   },

@@ -1,5 +1,5 @@
 <template>
-    <div id="app" class="row">
+    <div id="app">
         <SpellCard :key="index" v-for="(spellData, index) in spells" v-bind:spell="spellData" />
     </div>
 </template>

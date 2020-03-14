@@ -1,14 +1,9 @@
 <template>
-    <div class="spell col-12 col-md-6">
+    <div class="spell">
         <h3 class="spell__name">{{ spell.name }}</h3>
 
         <div class="spell__school"><em>
-            <span v-if="spell.level == 0">Cantrip</span>
-            <span v-else-if="spell.level == 1">1st</span>
-            <span v-else-if="spell.level == 2">2nd</span>
-            <span v-else-if="spell.level == 3">3rd</span>
-            <span v-else>{{spell.level}}th</span>,
-            {{ spell.school.name }} <span v-if="spell.ritual">(ritual)</span>
+            {{ ordinalSuffix }}, {{ spell.school.name }} <span v-if="spell.ritual">(ritual)</span>
         </em></div>
 
         <ul class="spell__meta">
@@ -25,24 +20,15 @@
         </ul>
 
         <div class="spell__desc">
-            <p :key="index" v-for="(desc, index) in spell.desc">{{ desc }}</p>
+            <p :key="index" v-for="(desc, index) in spell.desc" v-text="desc" />
         </div>
 
         <div v-if="spell.higher_level" class="spell__desc">
-            <p> <strong><em>At Higher Levels.</em></strong> {{ spell.higher_level[0] }}</p>
+            <p><strong><em>At Higher Levels. </em></strong>{{ spell.higher_level[0] }}</p>
         </div>
 
-        <p>classes:
-            <span :key="index" v-for="(spellClass, index) in spell.classes" v-text="spellClass.name" />
-            <!-- {{ spellClass.name }} -->
-            <!-- </span> -->
-        </p>
-
-        <p v-if="spell.subclasses.length">subclasses:
-            <span :key="index" v-for="(sublass, index) in spell.subclasses">
-                {{ sublass.name }}
-            </span>
-        </p>
+        <p>classes: <span :key="index" v-for="(spellClass, index) in spell.classes" v-text="spellClass.name + ' '" /></p>
+        <p v-if="spell.subclasses.length">subclasses: <span :key="index" v-for="(subclass, index) in spell.subclasses" v-text="subclass.name + ' '" /></p>
 
         <p><em>{{ spell.page }}</em></p>
     </div>
@@ -56,7 +42,21 @@
         },
         data() {
             return {};
+        },
+        computed: {
+            ordinalSuffix() {
+                if ( this.spell.level == 0 ) {
+                    return 'Cantrip'
+                } else if ( this.spell.level == 1 ) {
+                    return this.spell.level + 'st'
+                } else if ( this.spell.level == 2 ) {
+                    return this.spell.level + 'nd'
+                } else if ( this.spell.level == 3 ) {
+                    return this.spell.level + 'rd'
+                } else {
+                    return this.spell.level + 'th'
+                }
+            }
         }
     }
 </script>
-
