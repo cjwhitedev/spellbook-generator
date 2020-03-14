@@ -2,21 +2,19 @@
     <div class="spell">
         <h3 class="spell__name">{{ spell.name }}</h3>
 
-        <div class="spell__school"><em>
+        <div class="spell__school">
             {{ ordinalSuffix }}, {{ spell.school.name }} <span v-if="spell.ritual">(ritual)</span>
-        </em></div>
+        </div>
 
         <ul class="spell__meta">
-            <li v-if="spell.casting_time"><strong>Casting Time:</strong> {{ spell.casting_time }}</li>
-            <li v-if="spell.range"><strong>Range:</strong> {{ spell.range }}</li>
+            <li v-if="spell.casting_time">Casting Time: {{ spell.casting_time }}</li>
+            <li v-if="spell.range">Range: {{ spell.range }}</li>
             <li v-if="spell.components">
-                <strong>Components:</strong>
-                <span :key="index" v-for="(spellComponent, index) in spell.components">
-                {{ spellComponent }}
-                </span>
-                <span v-if="spell.material">( {{ spell.material }} )</span>
+                Components:
+                <span :key="index" v-for="(spellComponent, index) in spell.components" v-text="spellComponent + ' '" />
+                <span v-if="spell.material" v-text="spell.material" />
             </li>
-            <li v-if="spell.duration"><strong>Duration:</strong> <span v-if="spell.concentration">Concentration,</span> {{ spell.duration }}</li>
+            <li v-if="spell.duration">Duration: <span v-if="spell.concentration">Concentration,</span> {{ spell.duration }}</li>
         </ul>
 
         <div class="spell__desc">
@@ -24,13 +22,13 @@
         </div>
 
         <div v-if="spell.higher_level" class="spell__desc">
-            <p><strong><em>At Higher Levels. </em></strong>{{ spell.higher_level[0] }}</p>
+            <p>At Higher Levels. <span :key="index" v-for="(higherLevel, index) in spell.higher_level" v-text="higherLevel" /></p>
         </div>
 
-        <p>classes: <span :key="index" v-for="(spellClass, index) in spell.classes" v-text="spellClass.name + ' '" /></p>
-        <p v-if="spell.subclasses.length">subclasses: <span :key="index" v-for="(subclass, index) in spell.subclasses" v-text="subclass.name + ' '" /></p>
+        <p>classes: <span :key="index" v-for="(spellClass, index) in spell.classes" v-text="spellClass.name + ' '" />
+        <p v-if="spell.subclasses.length">subclasses: <span :key="index" v-for="(subclass, index) in spell.subclasses" v-text="subclass.name + ' '" />
 
-        <p><em>{{ spell.page }}</em></p>
+        <p>{{ spell.page }}</p>
     </div>
 </template>
 
