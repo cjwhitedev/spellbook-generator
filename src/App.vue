@@ -1,5 +1,8 @@
 <template>
     <div id="app">
+        <div class="filter">
+            <button :key="index2" v-for="(casterClass, index2) in classes" v-text="casterClass" />
+        </div>
         <SpellCard :key="index" v-for="(spellData, index) in spells" v-bind:spell="spellData" />
     </div>
 </template>
@@ -12,6 +15,7 @@
         name: 'App',
         data: () => ({
             spells: [],
+            classes: [],
             loading: true,
             errored: false,
             error: null
